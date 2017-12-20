@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171220191237) do
+ActiveRecord::Schema.define(version: 20171220210640) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 20171220191237) do
   create_table "directors", force: :cascade do |t|
     t.string "name", null: false
     t.string "surname", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["name", "surname"], name: "index_directors_on_name_and_surname", unique: true
   end
 
@@ -27,21 +29,41 @@ ActiveRecord::Schema.define(version: 20171220191237) do
     t.time "duration"
     t.text "info"
     t.text "genres", default: [], array: true
-    t.bigint "director_id"
-    t.bigint "writer_id"
     t.text "countries", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["director_id"], name: "index_movies_on_director_id"
-    t.index ["writer_id"], name: "index_movies_on_writer_id"
+  end
+
+  create_table "movies_directors", force: :cascade do |t|
+    t.bigint "movie_id"
+    t.bigint "director_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["director_id"], name: "index_movies_directors_on_director_id"
+    t.index ["movie_id", "director_id"], name: "index_movies_directors_on_movie_id_and_director_id", unique: true
+    t.index ["movie_id"], name: "index_movies_directors_on_movie_id"
+  end
+
+  create_table "movies_writers", force: :cascade do |t|
+    t.bigint "movie_id"
+    t.bigint "writer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["movie_id", "writer_id"], name: "index_movies_writers_on_movie_id_and_writer_id", unique: true
+    t.index ["movie_id"], name: "index_movies_writers_on_movie_id"
+    t.index ["writer_id"], name: "index_movies_writers_on_writer_id"
   end
 
   create_table "writers", force: :cascade do |t|
     t.string "name", null: false
     t.string "surname", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["name", "surname"], name: "index_writers_on_name_and_surname", unique: true
   end
 
-  add_foreign_key "movies", "directors"
-  add_foreign_key "movies", "writers"
+  add_foreign_key "movies_directors", "directors"
+  add_foreign_key "movies_directors", "movies"
+  add_foreign_key "movies_writers", "movies"
+  add_foreign_key "movies_writers", "writers"
 end

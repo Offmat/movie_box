@@ -1,0 +1,23 @@
+<h1>List of movies</h1>
+
+
+<% @movies.each do |movie| %>
+  <p>
+    Title: <%= movie.title %>
+  </p>
+  <p>
+    Release date: <%= movie.release_date || 'unknown' %>
+  </p>
+  <p>
+    Duration: <%= movie.duration || 'unknown' %>
+  </p>
+  <p>
+    Info: <%= movie.info %>
+  </p>
+  <p>
+    Genres: <%= movie.genres %>
+  </p>
+  <p>
+    Genres: <%= movie.genres %>
+  </p>
+<% end %>
