@@ -1,4 +1,4 @@
-class MovieDirector < ApplicationRecord
+class MoviesDirector < ApplicationRecord
   validates :movie, uniqueness: { scope: :director }
   belongs_to :movie
   belongs_to :director
