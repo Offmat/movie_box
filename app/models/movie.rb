@@ -4,6 +4,9 @@ validates :title, presence: true
 has_many :movies_directors
 has_many :directors, through: :movies_directors
 
+has_many :movies_writers
+has_many :writers, through: :movies_writers
+
 
   def genres=(value)
     value = sanitize_genres(value) if value.is_a?(String)
