@@ -1,4 +1,8 @@
 class Movie < ApplicationRecord
+validates :title, presence: true
+
+has_many :movie_directors
+has_many :directors, through: :movie_directors
 
 
   def genres=(value)
