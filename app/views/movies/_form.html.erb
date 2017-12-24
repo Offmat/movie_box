@@ -3,7 +3,7 @@
   <%= f.label :title %>
   <%= f.text_field :title %>
 
-  <%= f.label :release_date %>
+  <%= f.label :release_date, "Release date (YYYY-MM-DD) " %>
   <%= f.text_field :release_date %>
 
   <%= f.label :duration, "Duration (HH:MM:SS)" %>
@@ -17,6 +17,16 @@
 
   <%= f.label :countries %>
   <%= f.text_field :countries %>
+
+  <%= fields_for :director do |field| %>
+
+    <%= field.label :name %>
+    <%= field.text_field :name %>
+
+    <%= field.label :surname %>
+    <%= field.text_field :surname %>
+
+  <% end %>
 
   <%= f.submit %>
 
