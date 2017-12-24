@@ -9,18 +9,27 @@ class MoviesController < ApplicationController
 
   def create
     @director = Director.find_by(director_params) || Director.new(director_params)
+    @writer = Writer.find_by(writer_params) || Writer.new(writer_params)
     @movie = Movie.new(movie_params)
-    binding.pry
+
     if @movie.save
       redirect_to movies_path
     else
       render 'new'
     end
+
     if @director.persisted?
 
     else
       @director.save
     end
+
+    if @writer.persisted?
+
+    else
+      @writer.save
+    end
+
   end
 
   private
@@ -31,5 +40,9 @@ class MoviesController < ApplicationController
 
   def director_params
     params.require(:director).permit(:name, :surname)
+  end
+
+  def writer_params
+    params.require(:writer).permit(:name, :surname)
   end
 end

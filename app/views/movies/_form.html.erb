@@ -20,11 +20,21 @@
 
   <%= fields_for :director do |director_field| %>
 
-    <%= director_field.label :name %>
+    <%= director_field.label :name, "Director name" %>
     <%= director_field.text_field :name %>
 
-    <%= director_field.label :surname %>
+    <%= director_field.label :surname, "Director surname" %>
     <%= director_field.text_field :surname %>
+
+  <% end %>
+
+  <%= fields_for :writer do |writer_field| %>
+
+    <%= writer_field.label :name, "Writer name" %>
+    <%= writer_field.text_field :name %>
+
+    <%= writer_field.label :surname, "Writer surname" %>
+    <%= writer_field.text_field :surname %>
 
   <% end %>
 
