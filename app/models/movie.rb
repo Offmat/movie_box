@@ -16,6 +16,6 @@ has_many :writers, through: :movies_writers
   private
 
   def sanitize_genres(value)
-    value.titleize.split.uniq
+    value.downcase.split.uniq
   end
 end

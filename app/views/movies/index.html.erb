@@ -9,15 +9,17 @@
     Release date: <%= movie.release_date || 'unknown' %>
   </p>
   <p>
-    Duration: <%= movie.duration || 'unknown' %>
+    Duration: <%= movie.duration&.strftime "%H:%M:%S" || 'unknown' %>
   </p>
   <p>
     Info: <%= movie.info %>
   </p>
   <p>
-    Genres: <%= movie.genres %>
+    Genres: <% movie.genres.each do |genre| %>
+              <%= genre + ", " %>
+            <% end %>
   </p>
   <p>
-    Genres: <%= movie.genres %>
+    Countries: <%= movie.countries %>
   </p>
 <% end %>
