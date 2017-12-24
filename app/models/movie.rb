@@ -13,9 +13,18 @@ has_many :writers, through: :movies_writers
     super(value)
   end
 
+  def countries=(value)
+    value = sanitize_countries(value) if value.is_a?(String)
+    super(value)
+  end
+
   private
 
   def sanitize_genres(value)
-    value.downcase.split.uniq
+    value.downcase.tr(",", " ").split.uniq
+  end
+
+  def sanitize_countries(value)
+    value.titleize.tr(",", " ").split.uniq
   end
 end
