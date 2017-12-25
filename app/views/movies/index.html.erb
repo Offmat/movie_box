@@ -2,9 +2,9 @@
 
 
 <% @movies.each do |movie| %>
-  <p>
+  <h3>
     Title: <%= movie.title %>
-  </p>
+  </h3>
   <p>
     Release date: <%= movie.release_date || 'unknown' %>
   </p>
@@ -23,4 +23,5 @@
     Countries: <%= movie.countries %>
   </p>
 
+  <%= link_to "Show movie", movie %>
 <% end %>
