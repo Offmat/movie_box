@@ -1,43 +1,58 @@
 <%= form_for @movie do |f| %>
 
+<p>
   <%= f.label :title %>
   <%= f.text_field :title %>
+</p>
 
+<p>
   <%= f.label :release_date, "Release date (YYYY-MM-DD) " %>
   <%= f.text_field :release_date %>
+</p>
 
+<p>
   <%= f.label :duration, "Duration (HH:MM:SS)" %>
   <%= f.text_field :duration %>
+</p>
 
+<p>
   <%= f.label :info, "Movie description" %>
   <%= f.text_area :info %>
+</p>
 
+<p>
   <%= f.label :genres %>
   <%= f.text_field :genres %>
+</p>
 
+<p>
   <%= f.label :countries %>
   <%= f.text_field :countries %>
+</p>
 
+<p>
   <%= fields_for :director do |director_field| %>
-
-    <%= director_field.label :name, "Director name" %>
+    <h3>Director:</h3>
+    <%= director_field.label :name%>
     <%= director_field.text_field :name %>
 
-    <%= director_field.label :surname, "Director surname" %>
+    <%= director_field.label :surname%>
     <%= director_field.text_field :surname %>
 
   <% end %>
+</p>
 
+<p>
   <%= fields_for :writer do |writer_field| %>
-
-    <%= writer_field.label :name, "Writer name" %>
+    <h3>Writer:</h3>
+    <%= writer_field.label :name %>
     <%= writer_field.text_field :name %>
 
-    <%= writer_field.label :surname, "Writer surname" %>
+    <%= writer_field.label :surname %>
     <%= writer_field.text_field :surname %>
 
   <% end %>
-
+</p>
   <%= f.submit %>
 
 <% end %>
