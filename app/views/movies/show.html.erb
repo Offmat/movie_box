@@ -5,7 +5,7 @@
   Release date: <%= @movie.release_date || 'unknown' %>
 </p>
 <p>
-  Duration: <%= @movie.duration&.strftime "%H:%M:%S" || 'unknown' %>
+  Duration: <%= @movie.duration&.strftime "%H:%M" || 'unknown' %>
 </p>
 <p>
   Info: <%= @movie.info %>

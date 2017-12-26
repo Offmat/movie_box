@@ -12,28 +12,20 @@ class MoviesController < ApplicationController
   end
 
   def create
-    @director = Director.find_by(director_params) || Director.new(director_params)
-    @writer = Writer.find_by(writer_params) || Writer.new(writer_params)
+    @director = Director.find_or_initialize_by(director_params)
+    @writer = Writer.find_or_initialize_by(writer_params)
     @movie = Movie.new(movie_params)
 
-    if @movie.save
+    if @movie.valid? && @director.valid? && @writer.valid?
+      @movie.save
+      @director.save
+      @writer.save
+      MoviesDirector.new(movie: @movie, director: @director).save
+      MoviesWriter.new(movie: @movie, writer: @writer).save
       redirect_to movies_path
     else
       render 'new'
     end
-
-    if @director.persisted?
-
-    else
-      @director.save
-    end
-
-    if @writer.persisted?
-
-    else
-      @writer.save
-    end
-
   end
 
   def edit
