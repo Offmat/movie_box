@@ -3,5 +3,5 @@ class Writer < ApplicationRecord
   validates :name, presence: true
   validates :surname, presence: true
   has_many :movies_writers
-  has_many :writers, through: :movies_writers
+  has_many :movies, through: :movies_writers
 end

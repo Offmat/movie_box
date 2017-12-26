@@ -17,12 +17,29 @@
           <% end %>
 </p>
 <p>
-  Countries: <%= @movie.countries %>
+  Countries:  <% @movie.genres.each.with_index do |genre, i| %>
+                <%= ", " if i > 0 %>
+                <%= genre %>
+              <% end %>
 </p>
 <p>
   Directors:  <% @movie.directors.each.with_index do |director, i| %>
                 <%= ", " if i > 0 %>
                 <%= director.name + " " + director.surname %>
+              <% end %>
+</p>
+<%= form_for @movie.directors.build, movie: @movie.id do |director_form| %>
+  <%= director_form.label :name %>
+  <%= director_form.text_field :name %>
+  <%= director_form.label :surname %>
+  <%= director_form.text_field :surname %>
+  <%= director_form.hidden_field :movies %>
+  <%= director_form.submit "Add director" %>
+<% end %>
+<p>
+  Writers:  <% @movie.writers.each.with_index do |writer, i| %>
+                <%= ", " if i > 0 %>
+                <%= writer.name + " " + writer.surname %>
               <% end %>
 </p>
 <p>
