@@ -18,5 +18,9 @@
 <p>
   Countries: <%= @movie.countries %>
 </p>
+<p>
 
+  <%= link_to "Delete", @movie, method: :delete,
+      data: { confirm: "Do you want to delete #{@movie.title}?" } %>
+</p>
 <%= link_to "Back", movies_path %>
