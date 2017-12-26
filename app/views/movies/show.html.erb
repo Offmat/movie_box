@@ -11,12 +11,19 @@
   Info: <%= @movie.info %>
 </p>
 <p>
-  Genres: <% @movie.genres.each do |genre| %>
-            <%= genre + ", " %>
+  Genres: <% @movie.genres.each.with_index do |genre, i| %>
+            <%= ", " if i > 0 %>
+            <%= genre %>
           <% end %>
 </p>
 <p>
   Countries: <%= @movie.countries %>
+</p>
+<p>
+  Directors:  <% @movie.directors.each.with_index do |director, i| %>
+                <%= ", " if i > 0 %>
+                <%= director.name + " " + director.surname %>
+              <% end %>
 </p>
 <p>
   <%= link_to "Edit", edit_movie_path(@movie) %>

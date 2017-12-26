@@ -6,22 +6,7 @@
     Title: <%= movie.title %>
   </h3>
   <p>
-    Release date: <%= movie.release_date || 'unknown' %>
-  </p>
-  <p>
-    Duration: <%= movie.duration&.strftime "%H:%M:%S" || 'unknown' %>
-  </p>
-  <p>
     Info: <%= movie.info %>
   </p>
-  <p>
-    Genres: <% movie.genres.each do |genre| %>
-              <%= genre + ", " %>
-            <% end %>
-  </p>
-  <p>
-    Countries: <%= movie.countries %>
-  </p>
-
-  <%= link_to "Show movie", movie %>
+  <%= link_to "More information", movie %>
 <% end %>
