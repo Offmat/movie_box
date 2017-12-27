@@ -15,6 +15,7 @@ class MoviesController < ApplicationController
     @director = Director.find_or_initialize_by(director_params)
     @writer = Writer.find_or_initialize_by(writer_params)
     @movie = Movie.new(movie_params)
+    binding.pry
     if @movie.valid? && @director.valid? && @writer.valid?
       @movie.save
       @director.save
