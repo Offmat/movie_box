@@ -30,9 +30,20 @@
   <%= f.text_field :countries %>
 </p>
 
+
+<h3><%= 'Director'.pluralize(@movie.directors.count) + ':' %></h3>
+<% if @movie.directors.present? %>
+  <% @movie.directors.each do |director| %>
+    <p>
+      <%= director.full_name %>
+      <%= link_to "Remove director", movie_movies_director_path(@movie, director), method: :delete,
+          data: { confirm: "Are you sure?" } %>
+    </p>
+  <% end %>
+<% end %>
+<p> Add director: </p>
 <p>
   <%= fields_for :director, @movie.directors.last do |director_field| %>
-    <h3>Director:</h3>
     <%= director_field.label :name%>
     <%= director_field.text_field :name %>
 

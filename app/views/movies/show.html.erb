@@ -25,7 +25,7 @@
 <p>
   Directors:  <% @movie.directors.each.with_index do |director, i| %>
                 <%= ", " if i > 0 %>
-                <%= director.name + " " + director.surname %>
+                <%= director.full_name %>
               <% end %>
 </p>
 <%= form_for @director do |director_form| %>
@@ -39,7 +39,7 @@
 <p>
   Writers:  <% @movie.writers.each.with_index do |writer, i| %>
                 <%= ", " if i > 0 %>
-                <%= writer.name + " " + writer.surname %>
+                <%= writer.full_name %>
               <% end %>
 </p>
 <p>
