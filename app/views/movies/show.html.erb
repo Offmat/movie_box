@@ -28,12 +28,12 @@
                 <%= director.name + " " + director.surname %>
               <% end %>
 </p>
-<%= form_for @movie.directors.build, movie: @movie.id do |director_form| %>
+<%= form_for @movie.directors.build do |director_form| %>
   <%= director_form.label :name %>
   <%= director_form.text_field :name %>
   <%= director_form.label :surname %>
   <%= director_form.text_field :surname %>
-  <%= director_form.hidden_field :movies %>
+  <%= director_form.hidden_field :movie_id, value: @movie.id %>
   <%= director_form.submit "Add director" %>
 <% end %>
 <p>
