@@ -4,4 +4,8 @@ class Director < ApplicationRecord
   validates :surname, presence: true
   has_many :movies_directors
   has_many :movies, through: :movies_directors
+
+  def full_name
+    name + " " + surname
+  end
 end

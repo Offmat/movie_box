@@ -4,4 +4,8 @@ class Writer < ApplicationRecord
   validates :surname, presence: true
   has_many :movies_writers
   has_many :movies, through: :movies_writers
+
+  def full_name
+    name + " " + surname
+  end
 end
