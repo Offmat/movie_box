@@ -1,69 +1,94 @@
 <%= form_for @movie do |f| %>
+  <p>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </p>
 
-<p>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-</p>
+  <p>
+    <%= f.label :release_date, "Release date (YYYY-MM-DD) " %>
+    <%= f.text_field :release_date %>
+  </p>
 
-<p>
-  <%= f.label :release_date, "Release date (YYYY-MM-DD) " %>
-  <%= f.text_field :release_date %>
-</p>
+  <p>
+    <%= f.label :duration, "Duration (HH:MM)" %>
+    <%= f.text_field :duration %>
+  </p>
 
-<p>
-  <%= f.label :duration, "Duration (HH:MM)" %>
-  <%= f.text_field :duration %>
-</p>
+  <p>
+    <%= f.label :info, "Movie description" %>
+    <%= f.text_area :info %>
+  </p>
 
-<p>
-  <%= f.label :info, "Movie description" %>
-  <%= f.text_area :info %>
-</p>
+  <p>
+    <%= f.label :genres %>
+    <%= f.text_field :genres %>
+  </p>
 
-<p>
-  <%= f.label :genres %>
-  <%= f.text_field :genres %>
-</p>
-
-<p>
-  <%= f.label :countries %>
-  <%= f.text_field :countries %>
-</p>
-
-
-<h3><%= 'Director'.pluralize(@movie.directors.count) + ':' %></h3>
-<% if @movie.directors.present? %>
-  <% @movie.directors.each do |director| %>
+  <p>
+    <%= f.label :countries %>
+    <%= f.text_field :countries %>
+  </p>
+  <% if @movie.id == nil %>
     <p>
-      <%= director.full_name %>
-      <%= link_to "Remove director", movie_movies_director_path(@movie, director), method: :delete,
-          data: { confirm: "Are you sure?" } %>
+      <%= fields_for :director, @movie.directors.build do |director_field| %>
+        <%= director_field.label :name%>
+        <%= director_field.text_field :name %>
+
+        <%= director_field.label :surname%>
+        <%= director_field.text_field :surname %>
+
+        <%= director_field.hidden_field :movie_id, value: @movie.id %>
+
+      <% end %>
     </p>
+
+    <p>
+      <%= fields_for :writer, @movie.writers.build do |writer_field| %>
+        <h3>Writer:</h3>
+        <%= writer_field.label :name %>
+        <%= writer_field.text_field :name %>
+
+        <%= writer_field.label :surname %>
+        <%= writer_field.text_field :surname %>
+
+      <% end %>
+    </p>
+
+
   <% end %>
+
+<%= f.submit %>
 <% end %>
-<p> Add director: </p>
-<p>
-  <%= fields_for :director, @movie.directors.last do |director_field| %>
-    <%= director_field.label :name%>
-    <%= director_field.text_field :name %>
 
-    <%= director_field.label :surname%>
-    <%= director_field.text_field :surname %>
 
+
+
+<% if !(@movie.id == nil) %>
+
+  <h3><%= 'Director'.pluralize(@movie.directors.count) + ':' %></h3>
+  <% if @movie.directors.present? %>
+    <% @movie.directors.each do |director| %>
+      <p>
+        <%= director.full_name %>
+        <%= link_to "Remove director", director_path(director, :movie_id => @movie.id),
+            method: :delete,
+            data: { confirm: "Are you sure?" } %>
+      </p>
+    <% end %>
   <% end %>
-</p>
+  <p> Add director: </p>
+  <p>
+    <%= form_for @movie.directors.build do |director_field| %>
+      <%= director_field.label :name%>
+      <%= director_field.text_field :name %>
 
-<p>
-  <%= fields_for :writer, @movie.writers.last do |writer_field| %>
-    <h3>Writer:</h3>
-    <%= writer_field.label :name %>
-    <%= writer_field.text_field :name %>
+      <%= director_field.label :surname%>
+      <%= director_field.text_field :surname %>
 
-    <%= writer_field.label :surname %>
-    <%= writer_field.text_field :surname %>
+      <%= director_field.hidden_field :movie_id, value: @movie.id %>
 
-  <% end %>
-</p>
-  <%= f.submit %>
+      <%= director_field.submit %>
+    <% end %>
+  </p>
 
 <% end %>

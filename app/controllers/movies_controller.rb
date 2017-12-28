@@ -16,13 +16,13 @@ class MoviesController < ApplicationController
     @director = Director.find_or_initialize_by(director_params)
     @writer = Writer.find_or_initialize_by(writer_params)
     @movie = Movie.new(movie_params)
-    if @movie.valid? && @director.valid? && @writer.valid?
+    if @movie.valid? # && @director.valid? && @writer.valid?
       @movie.save
       @director.save
       @writer.save
       MoviesDirector.new(movie: @movie, director: @director).save
       MoviesWriter.new(movie: @movie, writer: @writer).save
-      redirect_to movies_path
+      redirect_to @movie
     else
       render 'new'
     end
@@ -35,7 +35,7 @@ class MoviesController < ApplicationController
   def update
     @movie = Movie.find(params[:id])
     if @movie.update(movie_params)
-      redirect_to movies_path
+      redirect_to @movie
     else
       render 'edit'
     end
