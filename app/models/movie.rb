@@ -19,7 +19,7 @@ has_many :writers, through: :movies_writers
   end
 
   def duration
-    super.strftime "%H:%M"
+    super&.strftime "%H:%M"
   end
 
   private

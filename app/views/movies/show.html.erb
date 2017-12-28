@@ -17,7 +17,7 @@
           <% end %>
 </p>
 <p>
-  Countries:  <% @movie.genres.each.with_index do |genre, i| %>
+  Countries:  <% @movie.countries.each.with_index do |genre, i| %>
                 <%= ", " if i > 0 %>
                 <%= genre %>
               <% end %>
