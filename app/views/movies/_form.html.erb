@@ -28,6 +28,8 @@
     <%= f.label :countries %>
     <%= f.text_field :countries %>
   </p>
+
+
   <% if @movie.id == nil %>
     <p>
       <%= fields_for :director, @movie.directors.build do |director_field| %>
@@ -53,11 +55,11 @@
 
       <% end %>
     </p>
-
-
   <% end %>
 
 <%= f.submit %>
+<br>
+<%= link_to "Back", movies_path if @movie.id == nil %>
 <% end %>
 
 
@@ -90,5 +92,6 @@
       <%= director_field.submit %>
     <% end %>
   </p>
+  <%= link_to "Back", @movie %>
 
 <% end %>
