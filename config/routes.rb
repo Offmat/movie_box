@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   root 'movies#index'
   resources :movies
   resources :directors, only: [:create, :destroy]
+  resources :writers, only: [:create, :destroy]
 end
