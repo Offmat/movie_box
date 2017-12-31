@@ -18,10 +18,6 @@ has_many :writers, through: :movies_writers
     super(value)
   end
 
-  def duration
-    super&.strftime "%H:%M"
-  end
-
   private
 
   def sanitize_genres(value)
