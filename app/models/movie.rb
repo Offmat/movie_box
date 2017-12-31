@@ -18,6 +18,11 @@ has_many :writers, through: :movies_writers
     super(value)
   end
 
+  def duration=(value)
+    value = value[0..1].to_i*60 + value[3..4].to_i
+    super(value)
+  end
+
   private
 
   def sanitize_genres(value)
