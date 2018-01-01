@@ -31,6 +31,8 @@ class MoviesController < ApplicationController
   end
 
   def edit
+    @director = Director.new
+    @writer = Writer.new
   end
 
   def update

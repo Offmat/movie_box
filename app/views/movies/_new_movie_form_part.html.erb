@@ -1,5 +1,6 @@
 <p>
-  <%= fields_for :director, @movie.directors.build do |director_field| %>
+  <%= fields_for :director, @director do |director_field| %>
+    <h3>Director:</h3>
     <%= director_field.label :name%>
     <%= director_field.text_field :name %>
 
@@ -12,7 +13,7 @@
 </p>
 
 <p>
-  <%= fields_for :writer, @movie.writers.build do |writer_field| %>
+  <%= fields_for :writer, @writer do |writer_field| %>
     <h3>Writer:</h3>
     <%= writer_field.label :name %>
     <%= writer_field.text_field :name %>

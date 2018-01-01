@@ -35,7 +35,7 @@
 
 
 <% if @movie.id %>
-  <%= render 'edit_movie_form_part', collection: @movie.directors, position: "Director" %>
-  <%= render 'edit_movie_form_part', collection: @movie.writers, position: "Writer" %>
+  <%= render 'movies/edit_movie_form_part', collection: @movie.directors, position: "Director" %>
+  <%= render 'movies/edit_movie_form_part', collection: @movie.writers, position: "Writer" %>
   <%= link_to "Back", @movie %>
 <% end %>

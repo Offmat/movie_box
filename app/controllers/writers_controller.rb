@@ -6,6 +6,7 @@ class WritersController < ApplicationController
       MoviesWriter.new(movie: @movie, writer: @writer).save
       redirect_to edit_movie_path(@movie)
     else
+      @director = Director.new
       render 'movies/edit'
     end
   end
