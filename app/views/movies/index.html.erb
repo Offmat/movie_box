@@ -1,6 +1,5 @@
 <h1>List of movies</h1>
 
-
 <% @movies.each do |movie| %>
   <h3>
     Title: <%= movie.title %>
@@ -11,4 +10,5 @@
   <%= link_to "More information", movie %>
 <% end %>
 <br>
+
 <%= link_to "Add movie", new_movie_path %>
