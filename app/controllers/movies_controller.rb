@@ -10,6 +10,8 @@ class MoviesController < ApplicationController
 
   def new
     @movie = Movie.new
+    @director = Director.new
+    @writer = Writer.new
   end
 
   def create

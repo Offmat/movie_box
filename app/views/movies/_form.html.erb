@@ -1,3 +1,6 @@
+<%= render "common/error_messages", model: @movie %>
+<%= render "common/error_messages", model: @director %>
+<%= render "common/error_messages", model: @writer %>
 <%= form_for @movie do |f| %>
   <p>
     <%= f.label :title %>
