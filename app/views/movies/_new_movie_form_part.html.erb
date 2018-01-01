@@ -1,0 +1,24 @@
+<p>
+  <%= fields_for :director, @movie.directors.build do |director_field| %>
+    <%= director_field.label :name%>
+    <%= director_field.text_field :name %>
+
+    <%= director_field.label :surname%>
+    <%= director_field.text_field :surname %>
+
+    <%= director_field.hidden_field :movie_id, value: @movie.id %>
+
+  <% end %>
+</p>
+
+<p>
+  <%= fields_for :writer, @movie.writers.build do |writer_field| %>
+    <h3>Writer:</h3>
+    <%= writer_field.label :name %>
+    <%= writer_field.text_field :name %>
+
+    <%= writer_field.label :surname %>
+    <%= writer_field.text_field :surname %>
+
+  <% end %>
+</p>
