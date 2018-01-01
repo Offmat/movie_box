@@ -1,0 +1,7 @@
+<p>
+  <%= label.pluralize(collection.count) %>:
+  <% collection.each.with_index do |object, i| %>
+    <%= ", " if i > 0 %>
+    <%= object %>
+  <% end %>
+</p>
