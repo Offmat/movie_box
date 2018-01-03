@@ -1,11 +1,11 @@
 class Movie < ApplicationRecord
-validates :title, presence: true
+  validates :title, presence: true
 
-has_many :movies_directors, dependent: :destroy
-has_many :directors, through: :movies_directors
+  has_many :movies_directors, dependent: :destroy
+  has_many :directors, through: :movies_directors
 
-has_many :movies_writers, dependent: :destroy
-has_many :writers, through: :movies_writers
+  has_many :movies_writers, dependent: :destroy
+  has_many :writers, through: :movies_writers
 
 
   def genres=(value)

@@ -15,15 +15,12 @@ class MoviesController < ApplicationController
   end
 
   def create
-    @director = Director.find_or_initialize_by(director_params)
-    @writer = Writer.find_or_initialize_by(writer_params)
     @movie = Movie.new(movie_params)
-    if @movie.valid? && @director.valid? && @writer.valid?
-      @movie.save
-      @director.save
-      @writer.save
-      MoviesDirector.new(movie: @movie, director: @director).save
-      MoviesWriter.new(movie: @movie, writer: @writer).save
+    discard_directors
+    add_directors
+    discard_writers
+    add_writers
+    if @movie.save
       redirect_to @movie
     else
       render 'new'
@@ -31,11 +28,13 @@ class MoviesController < ApplicationController
   end
 
   def edit
-    @director = Director.new
-    @writer = Writer.new
   end
 
   def update
+    discard_directors
+    add_directors
+    discard_writers
+    add_writers
     if @movie.update(movie_params)
       redirect_to @movie
     else
@@ -50,6 +49,29 @@ class MoviesController < ApplicationController
 
   private
 
+  def check_directors
+    @movie.directors.each do |director|
+      MoviesDirector.find_by(movie: @movie, director: director).delete if !director_ids.include?(director.id)
+    end
+
+    director_ids.each do |id|
+      MoviesDirector.new(movie: @movie, director_id: id).save
+    end
+  end
+
+
+  def check_writers
+    @movie.writers.each do |writer|
+      MoviesWriter.find_by(movie: @movie, writer: writer).delete if !writer_ids.include?(writer.id)
+    end
+  end
+
+  def add_writers
+    writer_ids.each do |id|
+      MoviesWriter.new(movie: @movie, writer_id: id).save
+    end
+  end
+
   def find_movie
     @movie = Movie.find(params[:id])
   end
@@ -58,11 +80,11 @@ class MoviesController < ApplicationController
     params.require(:movie).permit(:title, :release_date, :duration, :info, :genres, :countries)
   end
 
-  def director_params
-    params.require(:director).permit(:name, :surname)
+  def director_ids
+    params.require(:movie).permit(director_ids: [])[:director_ids].map(&:to_i)
   end
 
-  def writer_params
-    params.require(:writer).permit(:name, :surname)
+  def writer_ids
+    params.require(:movie).permit(writer_ids: [])[:writer_ids].map(&:to_i)
   end
 end
