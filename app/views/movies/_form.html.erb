@@ -10,7 +10,7 @@
   </p>
   <p>
     <%= f.label :duration, "Duration (HH:MM)" %>
-    <%= f.text_field :duration %>
+    <%= f.text_field :duration, value: format_duration(@movie.duration) %>
   </p>
   <p>
     <%= f.label :info, "Movie description" %>
