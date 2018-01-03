@@ -16,9 +16,7 @@ class MoviesController < ApplicationController
   end
 
   def create
-    @movie = Movie.new(movie_params, director_ids: director_ids)
-    # check_directors
-    # check_writers
+    @movie = Movie.new(movie_params)
     @movie.save ? redirect_to(@movie) : render('new')
   end
 
@@ -26,8 +24,6 @@ class MoviesController < ApplicationController
   end
 
   def update
-    check_directors
-    check_writers
     @movie.update(movie_params) ? redirect_to(@movie) : render('edit')
   end
 
@@ -42,36 +38,7 @@ class MoviesController < ApplicationController
     @movie = Movie.find(params[:id])
   end
 
-  def check_directors
-    @movie.directors.each do |director|
-      MoviesDirector.find_by(movie: @movie, director: director).delete if !director_ids&.include?(director.id)
-    end
-
-    director_ids&.each do |id|
-      MoviesDirector.new(movie: @movie, director_id: id).save
-    end
-  end
-
-
-  def check_writers
-    @movie.writers.each do |writer|
-      MoviesWriter.find_by(movie: @movie, writer: writer).delete if !writer_ids&.include?(writer.id)
-    end
-
-    writer_ids&.each do |id|
-      MoviesWriter.new(movie: @movie, writer_id: id).save
-    end
-  end
-
   def movie_params
-    params.require(:movie).permit(:title, :release_date, :duration, :info, :genres, :countries)
-  end
-
-  def director_ids
-    params.require(:movie).permit(director_ids: [])[:director_ids]&.map(&:to_i)
-  end
-
-  def writer_ids
-    params.require(:movie).permit(writer_ids: [])[:writer_ids]&.map(&:to_i)
+    params.require(:movie).permit(:title, :release_date, :duration, :info, :genres, :countries, director_ids: [], writer_ids: [])
   end
 end
