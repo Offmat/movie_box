@@ -1,6 +1,6 @@
 class WritersController < ApplicationController
   def index
-    @writers = Writer.all
+    @writers = Writer.all.order(:surname)
     @writer = Writer.new
   end
 
