@@ -18,11 +18,7 @@ class MoviesController < ApplicationController
     @movie = Movie.new(movie_params)
     check_directors
     check_writers
-    if @movie.save
-      redirect_to @movie
-    else
-      render 'new'
-    end
+    @movie.save ? redirect_to(@movie) : render('new')
   end
 
   def edit
@@ -31,11 +27,7 @@ class MoviesController < ApplicationController
   def update
     check_directors
     check_writers
-    if @movie.update(movie_params)
-      redirect_to @movie
-    else
-      render 'edit'
-    end
+    @movie.update(movie_params) ? redirect_to(@movie) : render('edit')
   end
 
   def destroy
@@ -48,7 +40,7 @@ class MoviesController < ApplicationController
   def find_movie
     @movie = Movie.find(params[:id])
   end
-  
+
   def check_directors
     @movie.directors.each do |director|
       MoviesDirector.find_by(movie: @movie, director: director).delete if !director_ids.include?(director.id)

@@ -11,17 +11,17 @@
   Info: <%= @movie.info %>
 </p>
 <p>
-  <%= render 'list', collection: @movie.genres , label: "Genre" %>
+  <%= render 'list', collection: @movie.genres, label: "Genre" %>
 </p>
 <p>
-  <%= render 'list', collection: @movie.countries , label: "Country" %>
+  <%= render 'list', collection: @movie.countries, label: "Country" %>
 </p>
 <p>
-  <%= render 'list', collection: @movie.directors.map {|d| d.full_name}, label: "Director" %>
+  <%= render 'list', collection: @movie.directors.map(&:full_name), label: "Director" %>
 </p>
 
 <p>
-  <%= render 'list', collection: @movie.writers.map {|w| w.full_name}, label: "Writer" %>
+  <%= render 'list', collection: @movie.writers.map(&:full_name), label: "Writer" %>
 </p>
 
 <p>
