@@ -16,10 +16,8 @@ class MoviesController < ApplicationController
 
   def create
     @movie = Movie.new(movie_params)
-    discard_directors
-    add_directors
-    discard_writers
-    add_writers
+    check_directors
+    check_writers
     if @movie.save
       redirect_to @movie
     else
@@ -31,10 +29,8 @@ class MoviesController < ApplicationController
   end
 
   def update
-    discard_directors
-    add_directors
-    discard_writers
-    add_writers
+    check_directors
+    check_writers
     if @movie.update(movie_params)
       redirect_to @movie
     else
@@ -49,6 +45,10 @@ class MoviesController < ApplicationController
 
   private
 
+  def find_movie
+    @movie = Movie.find(params[:id])
+  end
+  
   def check_directors
     @movie.directors.each do |director|
       MoviesDirector.find_by(movie: @movie, director: director).delete if !director_ids.include?(director.id)
@@ -64,16 +64,10 @@ class MoviesController < ApplicationController
     @movie.writers.each do |writer|
       MoviesWriter.find_by(movie: @movie, writer: writer).delete if !writer_ids.include?(writer.id)
     end
-  end
 
-  def add_writers
     writer_ids.each do |id|
       MoviesWriter.new(movie: @movie, writer_id: id).save
     end
-  end
-
-  def find_movie
-    @movie = Movie.find(params[:id])
   end
 
   def movie_params
