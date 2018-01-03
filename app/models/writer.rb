@@ -6,6 +6,6 @@ class Writer < ApplicationRecord
   has_many :movies, through: :movies_writers
 
   def full_name
-    name + " " + surname
+    "#{name} #{surname}"
   end
 end

@@ -1,10 +1,22 @@
 class DirectorsController < ApplicationController
-  def create
+  def index
+    @directors = Director.all
+    @director = Director.new
+  end
 
+  def create
+    @director = Director.new(director_params)
+    @director.save ? redirect_to(directors_path) : render('index')
   end
 
   def destroy
-
+    @director = Director.find(params[:id])
+    if @director.movies.any?
+      redirect_to @director.movies.last
+    else
+      @director.delete
+      redirect_to directors_path
+    end
   end
 
   private

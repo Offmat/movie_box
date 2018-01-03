@@ -6,6 +6,6 @@ class Director < ApplicationRecord
   has_many :movies, through: :movies_directors
 
   def full_name
-    name + " " + surname
+    "#{name} #{surname}"
   end
 end
