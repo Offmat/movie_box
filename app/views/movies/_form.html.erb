@@ -26,13 +26,13 @@
   </p>
 
   <h3>Choose directors:</h3>
-  <%= collection_check_boxes(:movie, :director_ids, Director.all.order(:surname), :id, :full_name, include_hidden: false) do |b| %>
+  <%= collection_check_boxes(:movie, :director_ids, Director.all.order(:surname), :id, :full_name) do |b| %>
     <%= b.check_box + b.label %>
   <% end %>
   <p> <%= link_to "Manage director", directors_path %> </p>
 
   <h3>Choose writers:</h3>
-  <%= collection_check_boxes(:movie, :writer_ids, Writer.all.order(:surname), :id, :full_name, include_hidden: false) do |b| %>
+  <%= collection_check_boxes(:movie, :writer_ids, Writer.all.order(:surname), :id, :full_name) do |b| %>
     <%= b.check_box + b.label %>
   <% end %>
   <p> <%= link_to "Manage writers", writers_path %> </p>

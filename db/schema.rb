@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180103153653) do
+ActiveRecord::Schema.define(version: 20180103192217) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,14 @@ ActiveRecord::Schema.define(version: 20180103153653) do
     t.index ["movie_id", "writer_id"], name: "index_movies_writers_on_movie_id_and_writer_id", unique: true
     t.index ["movie_id"], name: "index_movies_writers_on_movie_id"
     t.index ["writer_id"], name: "index_movies_writers_on_writer_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", null: false
+    t.string "password_hash", null: false
+    t.string "password_salt", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "writers", force: :cascade do |t|
