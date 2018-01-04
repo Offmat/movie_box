@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 20180104152328) do
   create_table "opinions", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "movie_id", null: false
-    t.integer "score", limit: 2
+    t.integer "score", limit: 2, null: false
     t.text "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -3,7 +3,7 @@ class CreateOpinions < ActiveRecord::Migration[5.1]
     create_table :opinions do |t|
       t.references :user, foreign_key: true, null: false
       t.references :movie, foreign_key: true, null: false
-      t.integer :score, limit: 1
+      t.integer :score, limit: 1, null: false
       t.text :comment
       t.index [:user_id, :movie_id], unique: true
 
