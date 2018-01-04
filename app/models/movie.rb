@@ -7,6 +7,7 @@ class Movie < ApplicationRecord
   has_many :movies_writers, dependent: :destroy
   has_many :writers, through: :movies_writers
 
+  has_many :opinions
 
   def genres=(value)
     value = sanitize_genres(value) if value.is_a?(String)

@@ -6,6 +6,8 @@ class User < ApplicationRecord
   validates :password, presence: true
   validates :email, presence: true, uniqueness: true
 
+  has_many :opinions
+
   def self.authentication(email, password)
     user = User.find_by(email: email)
     if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
