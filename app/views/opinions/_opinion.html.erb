@@ -1,7 +1,6 @@
 <p>
-  Score:
-  <%= opinion.score %>/10
-|
-  Comment:
-  <%= opinion.comment %>
+  <%= opinion.user.email %> rating for <%= opinion.movie.title %> is <%= opinion.score %>/10
+</p>
+<p>
+  <%= opinion.comment.empty? ? 'no comment' : "Comment: " + opinion.comment %>
 </p>

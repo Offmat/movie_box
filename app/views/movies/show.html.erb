@@ -3,7 +3,7 @@
 </h3>
 <% if @movie.opinions.any? %>
   <p>
-    Rating: <%= @movie.opinions.average(:score).to_s + "/10" %>
+    Rating: <%= @movie.opinions.average(:score).round(2).to_s + "/10" %>
   </p>
 <% end %>
 <p>
