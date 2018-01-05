@@ -1,6 +1,11 @@
 <h3>
   Title: <%= @movie.title %>
 </h3>
+<% if @movie.opinions.any? %>
+  <p>
+    Rating: <%= @movie.opinions.average(:score).to_s + "/10" %>
+  </p>
+<% end %>
 <p>
   Release date: <%= @movie.release_date || 'unknown' %>
 </p>

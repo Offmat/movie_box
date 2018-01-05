@@ -3,6 +3,9 @@
 <% @movies.each do |movie| %>
   <h3>
     Title: <%= movie.title %>
+    <% if movie.opinions.any? %>
+      | <%= movie.opinions.average(:score) %>
+    <% end %>
   </h3>
   <p>
     Info: <%= movie.info %>

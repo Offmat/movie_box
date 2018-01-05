@@ -2,7 +2,7 @@ class OpinionsController < ApplicationController
   def create
     @movie = Movie.find(params[:movie_id])
     @opinion = Opinion.new(opinion_params)
-    @opinion.attributes = {movie_id: @movie.id, user: current_user}
+    @opinion.attributes = {movie: @movie, user: current_user}
     if @opinion.save
       redirect_to @movie
     else
