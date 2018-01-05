@@ -3,7 +3,7 @@ class User < ApplicationRecord
   before_save :encrypt_password
 
   validates_confirmation_of :password, message: "Password should be same"
-  validates :password, presence: true
+  validates :password_hash, presence: true
   validates :email, presence: true, uniqueness: true
 
   has_many :opinions

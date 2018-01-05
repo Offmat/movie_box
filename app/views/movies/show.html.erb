@@ -30,7 +30,7 @@
 </p>
 
 <p>
-  <% if @movie.user == current_user %>
+  <% if @movie.user == current_user || admin? %>
     <%= link_to "Edit", edit_movie_path(@movie) %>
     <%= link_to "Delete", @movie, method: :delete,
         data: { confirm: "Do you want to delete #{@movie.title}?" } %>

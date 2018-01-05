@@ -1,6 +1,6 @@
 <p>
   <%= opinion.user.email %> rates for '<%= opinion.movie.title %>' is <%= opinion.score %>/10
-  <% if opinion.user == current_user %>
+  <% if opinion.user == current_user || admin? %>
     | <%= link_to "Delete opinion", [@movie, opinion],
           method: :delete, data: { confirm: "Are you sure?" } %>
   <% end %>
