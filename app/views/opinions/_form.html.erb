@@ -1,0 +1,15 @@
+<h3>Rate '<%= @movie.title %>'</h3>
+<%= render "common/error_messages", model: @opinion %>
+<%= form_for [@movie, @opinion] do |f| %>
+  <p>
+    <%= f.label :score %>
+    <%= f.number_field :score %>
+  </p>
+  <p>
+    <%= f.label :comment %>
+    <%= f.text_area :comment %>
+  </p>
+  <p>
+    <%= f.submit "Rate" %>
+  </p>
+<% end %>

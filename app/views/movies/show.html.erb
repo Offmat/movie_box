@@ -11,17 +11,17 @@
   Info: <%= @movie.info %>
 </p>
 <p>
-  <%= render 'list', collection: @movie.genres, label: "Genre" %>
+  <%= render 'common/list', collection: @movie.genres, label: "Genre" %>
 </p>
 <p>
-  <%= render 'list', collection: @movie.countries, label: "Country" %>
+  <%= render 'common/list', collection: @movie.countries, label: "Country" %>
 </p>
 <p>
-  <%= render 'list', collection: @movie.directors.map(&:full_name), label: "Director" %>
+  <%= render 'common/list', collection: @movie.directors.map(&:full_name), label: "Director" %>
 </p>
 
 <p>
-  <%= render 'list', collection: @movie.writers.map(&:full_name), label: "Writer" %>
+  <%= render 'common/list', collection: @movie.writers.map(&:full_name), label: "Writer" %>
 </p>
 
 <p>
@@ -29,4 +29,5 @@
   <%= link_to "Delete", @movie, method: :delete,
       data: { confirm: "Do you want to delete #{@movie.title}?" } %>
 </p>
+<%= render 'opinions/form' %>
 <%= link_to "Back", movies_path %>

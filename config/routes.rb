@@ -5,9 +5,11 @@ Rails.application.routes.draw do
   get 'log_in', to: 'sessions#new', as: 'log_in'
   get 'sign_up', to: 'users#new', as: 'sign_up'
   root 'movies#index'
-  resources :users, only: [:new, :create]
-  resources :sessions
-  resources :movies
+  resources :users, only: [:create]
+  resources :sessions, only: [:create]
+  resources :movies do
+    resources :opinions, only: [:create]
+  end
   resources :directors, except: [:show, :new]
   resources :writers, except: [:show, :new]
 end

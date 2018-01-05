@@ -6,13 +6,11 @@ class MoviesController < ApplicationController
   end
 
   def show
-    @director = Director.new
+    @opinion = @movie.opinions.build
   end
 
   def new
     @movie = Movie.new
-    @director = Director.new
-    @writer = Writer.new
   end
 
   def create
