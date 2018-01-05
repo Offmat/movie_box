@@ -6,7 +6,7 @@ class MoviesController < ApplicationController
   end
 
   def show
-    @opinion = @movie.opinions.build
+    @opinion = Opinion.new
   end
 
   def new
