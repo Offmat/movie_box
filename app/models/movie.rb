@@ -8,6 +8,7 @@ class Movie < ApplicationRecord
   has_many :writers, through: :movies_writers
 
   has_many :opinions
+  belongs_to :user
 
   def genres=(value)
     value = sanitize_genres(value) if value.is_a?(String)

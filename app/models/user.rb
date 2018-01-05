@@ -7,6 +7,7 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
 
   has_many :opinions
+  has_many :movies
 
   def self.authentication(email, password)
     user = User.find_by(email: email)
