@@ -3,7 +3,7 @@
 <%= form_for [@movie, @opinion] do |f| %>
   <p>
     <%= f.label :score %>
-    <%= f.number_field :score %>
+    <%= f.number_field :score, in: 0..10 %>
   </p>
   <p>
     <%= f.label :comment %>
