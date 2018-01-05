@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :users, only: [:create]
   resources :sessions, only: [:create]
   resources :movies do
-    resources :opinions, only: [:create]
+    resources :opinions, only: [:create, :destroy]
   end
   resources :directors, except: [:show, :new]
   resources :writers, except: [:show, :new]

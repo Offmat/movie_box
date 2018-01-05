@@ -1,5 +1,9 @@
 <p>
-  <%= opinion.user.email %> rating for <%= opinion.movie.title %> is <%= opinion.score %>/10
+  <%= opinion.user.email %> rates for <%= opinion.movie.title %> is <%= opinion.score %>/10
+  <% if opinion.user == current_user %>
+    | <%= link_to "Delete opinion", [@movie, opinion],
+          method: :delete, data: { confirm: "Are you sure?" } %>
+  <% end %>
 </p>
 <p>
   <%= opinion.comment.empty? ? 'no comment' : "Comment: " + opinion.comment %>

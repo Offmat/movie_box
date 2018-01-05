@@ -10,6 +10,13 @@ class OpinionsController < ApplicationController
     end
   end
 
+  def destroy
+    opinion = Opinion.find(params[:id])
+    opinion.destroy
+
+    redirect_to movie_path(params[:movie_id])
+  end
+
   private
 
   def opinion_params
