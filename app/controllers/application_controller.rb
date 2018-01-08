@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+  before_action :authenticate_user
 
   helper_method :current_user
   helper_method :admin?
@@ -17,5 +18,11 @@ class ApplicationController < ActionController::Base
 
   def user_name
     current_user.email || "Guest"
+  end
+
+  def authenticate_user
+    if !current_user
+      redirect_to log_in_path, alert: 'You have to be logged in'
+    end
   end
 end
