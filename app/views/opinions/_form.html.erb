@@ -1,5 +1,5 @@
 <h3>Rate '<%= @movie.title %>'</h3>
-<%= render "common/error_messages", model: @opinion %>
+<%= render "common/error_messages_overrided", model: @opinion %>
 <%= form_for [@movie, @opinion] do |f| %>
   <p>
     <%= f.label :score %>
