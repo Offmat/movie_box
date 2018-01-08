@@ -1,4 +1,5 @@
 <p>
+  <% binding.pry %>
   <%= opinion.user.email %> rates for '<%= opinion.movie.title %>' is <%= opinion.score %>/10
   <% if opinion.user == current_user || admin? %>
     | <%= link_to "Delete opinion", [@movie, opinion],

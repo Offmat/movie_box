@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user
   helper_method :admin?
+  helper_method :user_name
 
   private
 
@@ -11,6 +12,10 @@ class ApplicationController < ActionController::Base
   end
 
   def admin?
-    User.find(session[:user_id]).admin
+    User.find(session[:user_id]).admin if current_user
+  end
+
+  def user_name
+    current_user.email || "Guest"
   end
 end
