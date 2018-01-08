@@ -7,7 +7,7 @@ class Movie < ApplicationRecord
   has_many :movies_writers, dependent: :destroy
   has_many :writers, through: :movies_writers
 
-  has_many :opinions
+  has_many :opinions, dependent: :destroy
   belongs_to :user
 
   def genres=(value)
