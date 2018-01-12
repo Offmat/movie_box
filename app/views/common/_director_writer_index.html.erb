@@ -2,8 +2,10 @@
 <% collection.each do |person| %>
   <p>
     <%= person.full_name.titleize %>
-    <%= link_to "Remove #{label.downcase}", person,
-        method: :delete, data: { confirm: "Are you sure?" } %>
+    <% if admin? %>
+      <%= link_to "Remove #{label.downcase}", person,
+          method: :delete, data: { confirm: "Are you sure?" } %>
+    <% end %>
   </p>
 <% end %>
 <%= render 'common/director_writer_form', model: model %>

@@ -1,5 +1,6 @@
 class MoviesController < ApplicationController
   before_action :find_movie, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_movie, only: [:edit, :update, :destroy]
 
   def index
     @movies = Movie.all
@@ -23,7 +24,6 @@ class MoviesController < ApplicationController
   end
 
   def update
-    authorize @movie
     @movie.update(movie_params) ? redirect_to(@movie) : render('edit')
   end
 
@@ -36,6 +36,10 @@ class MoviesController < ApplicationController
 
   def find_movie
     @movie = Movie.find(params[:id])
+  end
+
+  def authorize_movie
+    authorize @movie
   end
 
   def movie_params

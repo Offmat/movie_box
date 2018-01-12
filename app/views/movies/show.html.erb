@@ -43,7 +43,8 @@
   </p>
 <% end %>
 
-<% if current_user %>
+
+<% if current_user && !@movie.opinions.exists?(user: current_user) %>
   <%= render 'opinions/form' %>
 <% else %>
   <p>

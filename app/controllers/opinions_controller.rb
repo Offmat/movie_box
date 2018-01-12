@@ -11,8 +11,9 @@ class OpinionsController < ApplicationController
   end
 
   def destroy
-    opinion = Opinion.find(params[:id])
-    opinion.destroy
+    @opinion = Opinion.find(params[:id])
+    authorize @opinion
+    @opinion.destroy
 
     redirect_to movie_path(params[:movie_id])
   end
