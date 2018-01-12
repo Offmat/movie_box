@@ -23,6 +23,7 @@ class MoviesController < ApplicationController
   end
 
   def update
+    authorize @movie
     @movie.update(movie_params) ? redirect_to(@movie) : render('edit')
   end
 
