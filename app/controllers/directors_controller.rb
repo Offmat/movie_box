@@ -11,7 +11,7 @@ class DirectorsController < ApplicationController
 
   def destroy
     @director = Director.find(params[:id])
-    authorize @director
+    authorize :director
     if @director.movies.any?
       redirect_to @director.movies.last
     else

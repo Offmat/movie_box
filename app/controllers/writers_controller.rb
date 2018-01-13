@@ -11,7 +11,7 @@ class WritersController < ApplicationController
 
   def destroy
     @writer = Writer.find(params[:id])
-    authorize @writer
+    authorize :writer
     if @writer.movies.any?
       redirect_to @writer.movies.last
     else
