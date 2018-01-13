@@ -15,7 +15,7 @@ class MoviesController < ApplicationController
   end
 
   def create
-    @movie = Movie.new(movie_params)
+    @movie = Movie.new(permitted_attributes(Movie))
     @movie.user = current_user
     @movie.save ? redirect_to(@movie) : render('new')
   end
@@ -24,7 +24,7 @@ class MoviesController < ApplicationController
   end
 
   def update
-    @movie.update(movie_params) ? redirect_to(@movie) : render('edit')
+    @movie.update(permitted_attributes(Movie)) ? redirect_to(@movie) : render('edit')
   end
 
   def destroy
@@ -40,9 +40,5 @@ class MoviesController < ApplicationController
 
   def authorize_movie
     authorize @movie
-  end
-
-  def movie_params
-    params.require(:movie).permit(:title, :release_date, :duration, :info, :genres, :countries, director_ids: [], writer_ids: [])
   end
 end

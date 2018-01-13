@@ -44,7 +44,7 @@
 
 <% if current_user && !@movie.opinions.exists?(user: current_user) %>
   <%= render 'opinions/form' %>
-<% else %>
+<% elsif !current_user%>
   <p>
     <%= link_to "Log in to add opinion", log_in_path %>
   </p>
